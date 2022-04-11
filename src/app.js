@@ -2,19 +2,15 @@ import express from "express";
 import db from "./config/dbConnect.js";
 import livros from "./models/livro.js";
 
-db.on("error", console.log.bind(console, "connection error:"));
-db.once("open", () => {
-  console.log("Banco de dados conectado!");
-});
+
 const app = express();
 
 app.use(express.json());
 
-// const livros = [
-//     {id: 1, titulo: 'O Senhor dos Anéis', preco: 100},
-//     {id: 2, titulo: 'O Hobbit', preco: 200},
-//     {id: 3, titulo: 'A Tormenta', preco: 300},
-// ]
+db.on("error", console.log.bind(console, "connection error:"));
+db.once("open", () => {
+  console.log("Banco de dados conectado!");
+});
 
 app.get("/", (req, res) => {
   res.status(200).send("Curso de NodeJS");
